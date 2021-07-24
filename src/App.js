@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import Dashboard from "./Dashboard";
+import Landing from "./Landing";
+import Nav from "./Nav";
 
 function App() {
+  const auth = true;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Nav />
+      <Switch>
+        <Route exact path="/">
+          <button>Login</button>
+          <button>Logout</button>
+        </Route>
+        <Route
+          exact
+          path="/landing"
+          render={(props) => <Landing onSucess={"true"} {...props} />}
+        />
+        <ProtectedRoute
+          exact
+          path="/dashboard"
+          component={Dashboard}
+          isAuth={auth}
+        />
+      </Switch>
+    </Router>
   );
 }
 
