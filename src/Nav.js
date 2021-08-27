@@ -8,7 +8,10 @@ function Nav(props) {
         <li>
           <Link to="/">Home</Link>
         </li>
-        <button onClick={() => props.history.push("/landing")}>History</button>
+        <li>
+          {" "}
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
       </ul>
     </div>
   );
